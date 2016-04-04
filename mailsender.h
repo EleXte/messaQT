@@ -25,6 +25,11 @@ signals:
 public slots:
 
 private:
+    QVBoxLayout *subHeadLayout();
+    QVBoxLayout *textAndAttachLayout();
+    QHBoxLayout *buttonSendLayout();
+    QVBoxLayout *buttonAdressLayout();
+
 	QLabel *rcptToLabel;
 	QLabel *rcptToCopyLabel;
 	QLabel *SubjectLabel;
