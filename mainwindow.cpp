@@ -152,19 +152,23 @@ void MainWindow::FileDialog()
 {
 	fName = QFileDialog::getOpenFileName(this, QObject::tr("Open"), QString(),
 		QObject::tr("All Files (*)")); //диалоговое окно выбора файла
-	if (fName.isEmpty())
-	{
+    if (fName.isEmpty()) {
 		return;
-}
-
-
     }
+
+}
 
 void MainWindow::slot_NetworkConfig()
 {
 	WindowCongif = new windowConfig();
 	//connect(WindowCongif, SIGNAL(LoadConf()), this, SLOT(AdrListClick()));
-	WindowCongif->show();
+    WindowCongif->show();
+}
+
+void MainWindow::st_MailWin()
+{
+    MailSend = new MailSender();
+    MailSend->show();
 }
 
 
@@ -175,7 +179,7 @@ void MainWindow::createActions()
 	connectAct->setStatusTip(tr("Connectiing to host"));
 	connect(connectAct, SIGNAL(triggered()), this, SLOT(newFile()));
 
-	sendAct = new QAction(tr("&Send..."), this);
+    sendAct = new QAction(tr("&Send File..."), this);
 	//sendAct->setShortcuts(QKeySequence::Open);
 	sendAct->setStatusTip(tr("Send select information. And dont asking how!"));
 	connect(sendAct, SIGNAL(triggered()), this, SLOT(FileDialog()));
@@ -208,7 +212,7 @@ void MainWindow::createActions()
 	sendMailAct = new QAction(tr("&New mail"), this);
 	//sendMailAct->setShortcuts(QKeySequence::Paste);
 	sendMailAct->setStatusTip("First time want sand mail? F*ing virgin..");
-	connect(sendMailAct, SIGNAL(triggered()), this, SLOT(copy()));
+    connect(sendMailAct, SIGNAL(triggered()), this, SLOT(st_MailWin()));
 
 	/*aboutAct = new QAction(tr("&About"), this);
 	aboutAct->setStatusTip(tr("Show the application's About box"));

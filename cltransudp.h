@@ -15,43 +15,43 @@ class clTransUDP : public QThread
 public:
 	explicit clTransUDP(QString path, QThread *parent = 0);
 
-	QUdpSocket *qserver;				//Статус сервера передачи
-	QUdpSocket *qserverAn;				//Статус сервера приема ответа
+	QUdpSocket *qserver;				//РЎС‚Р°С‚СѓСЃ СЃРµСЂРІРµСЂР° РїРµСЂРµРґР°С‡Рё
+	QUdpSocket *qserverAn;				//РЎС‚Р°С‚СѓСЃ СЃРµСЂРІРµСЂР° РїСЂРёРµРјР° РѕС‚РІРµС‚Р°
 	QMap<int, QUdpSocket *> Socets;
 
-	void startUDPsok();					//Запуск сервера передачи
-	void stopUDPsok();					//Выключение сервера передачи
-	void startUDPsokAns();				//запуск сервера для приема ответа
-	void stopUDPsokAns();				//Выключение сервера приема ответа
+	void startUDPsok();					//Р—Р°РїСѓСЃРє СЃРµСЂРІРµСЂР° РїРµСЂРµРґР°С‡Рё
+	void stopUDPsok();					//Р’С‹РєР»СЋС‡РµРЅРёРµ СЃРµСЂРІРµСЂР° РїРµСЂРµРґР°С‡Рё
+	void startUDPsokAns();				//Р·Р°РїСѓСЃРє СЃРµСЂРІРµСЂР° РґР»СЏ РїСЂРёРµРјР° РѕС‚РІРµС‚Р°
+	void stopUDPsokAns();				//Р’С‹РєР»СЋС‡РµРЅРёРµ СЃРµСЂРІРµСЂР° РїСЂРёРµРјР° РѕС‚РІРµС‚Р°
 
-	int sokUDP_status;					//Статус сервера передачи
-	int sokUDPAn_status;				//Статус сервера приема ответа
-	QHostAddress adress;				//IP адрес получателя
+	int sokUDP_status;					//РЎС‚Р°С‚СѓСЃ СЃРµСЂРІРµСЂР° РїРµСЂРµРґР°С‡Рё
+	int sokUDPAn_status;				//РЎС‚Р°С‚СѓСЃ СЃРµСЂРІРµСЂР° РїСЂРёРµРјР° РѕС‚РІРµС‚Р°
+	QHostAddress adress;				//IP Р°РґСЂРµСЃ РїРѕР»СѓС‡Р°С‚РµР»СЏ
 	quint16 port;						//Port to send information
 	quint16 numbOfPak;					//Number of paket in 1 send cycle
-	quint64 PACET_SIZE;					//Размер передаваемых блоков
-	quint64 inDataSize;					//Фактический размер принятого/отправленного файла
-	quint64 fileSize;					//Полный размер принимаемого/отправляемого файла
+	quint64 PACET_SIZE;					//Р Р°Р·РјРµСЂ РїРµСЂРµРґР°РІР°РµРјС‹С… Р±Р»РѕРєРѕРІ
+	quint64 inDataSize;					//Р¤Р°РєС‚РёС‡РµСЃРєРёР№ СЂР°Р·РјРµСЂ РїСЂРёРЅСЏС‚РѕРіРѕ/РѕС‚РїСЂР°РІР»РµРЅРЅРѕРіРѕ С„Р°Р№Р»Р°
+	quint64 fileSize;					//РџРѕР»РЅС‹Р№ СЂР°Р·РјРµСЂ РїСЂРёРЅРёРјР°РµРјРѕРіРѕ/РѕС‚РїСЂР°РІР»СЏРµРјРѕРіРѕ С„Р°Р№Р»Р°
 	QByteArray transmitData;			//transmitted data or data to transmit
-	QFile *file;						//Весь файл
+	QFile *file;						//Р’РµСЃСЊ С„Р°Р№Р»
 
 signals:
 
 	public slots :
-	void readAnswer();                      //получение ответа
-	void readTransaction(QByteArray);		//получение файла с проверкой
-	void lauch();                           //Запуск функций начала передачи
+	void readAnswer();                      //РїРѕР»СѓС‡РµРЅРёРµ РѕС‚РІРµС‚Р°
+	void readTransaction(QByteArray);		//РїРѕР»СѓС‡РµРЅРёРµ С„Р°Р№Р»Р° СЃ РїСЂРѕРІРµСЂРєРѕР№
+	void lauch();                           //Р—Р°РїСѓСЃРє С„СѓРЅРєС†РёР№ РЅР°С‡Р°Р»Р° РїРµСЂРµРґР°С‡Рё
 
 private:
 
 	QSettings *settings;
-	void newcon();                                                                                  //Проверяем подключение на порт и адрес
-	void sendFileInf(quint8 TYPE_BlackMessa, QByteArray info, QHostAddress &host, quint16 &port);	//Непосредственная отправка
-	void prerapeToSendFile(QString filePath);               										//Подготовка к отправке
-	void sendMessage(QString msg);                                                                  //Отправка текстового сообщения
-	void globalToNULL();																			//Очистка вссех переменных
-	void nextSend();																				//Отправка следующего набора
-	QString getMD5(QByteArray &info);                                                               //Функция получения контрольной суммы
+	void newcon();                                                                                  //РџСЂРѕРІРµСЂСЏРµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ РЅР° РїРѕСЂС‚ Рё Р°РґСЂРµСЃ
+	void sendFileInf(quint8 TYPE_BlackMessa, QByteArray info, QHostAddress &host, quint16 &port);	//РќРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅР°СЏ РѕС‚РїСЂР°РІРєР°
+	void prerapeToSendFile(QString filePath);               										//РџРѕРґРіРѕС‚РѕРІРєР° Рє РѕС‚РїСЂР°РІРєРµ
+	void sendMessage(QString msg);                                                                  //РћС‚РїСЂР°РІРєР° С‚РµРєСЃС‚РѕРІРѕРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
+	void globalToNULL();																			//РћС‡РёСЃС‚РєР° РІСЃСЃРµС… РїРµСЂРµРјРµРЅРЅС‹С…
+	void nextSend();																				//РћС‚РїСЂР°РІРєР° СЃР»РµРґСѓСЋС‰РµРіРѕ РЅР°Р±РѕСЂР°
+	QString getMD5(QByteArray &info);                                                               //Р¤СѓРЅРєС†РёСЏ РїРѕР»СѓС‡РµРЅРёСЏ РєРѕРЅС‚СЂРѕР»СЊРЅРѕР№ СЃСѓРјРјС‹
 
 	//crc check
 	quint32 crc_table[256];
@@ -59,9 +59,9 @@ private:
 	QString getCRC32(QByteArray &data);
 	void init_crc_table();
 
-	//СТАТУС ОТВЕТА
+	//РЎРўРђРўРЈРЎ РћРўР’Р•РўРђ
 	enum answerType { trueA = 1, falseA = 2, successA = 3, scsEnd = 4 };
-	//ТИПЫ ПЕРЕДАЧ
+	//РўРРџР« РџР•Р Р•Р”РђР§
 	enum sendType { TYPE_MESSAGE = 0, TYPE_FILE = 1, TYPE_ANSWER = 2, TYPE_CHKSUM = 7, TYPE_HEAD = 9, TYPE_LASTPAK = 20, TYPE_ABORT = 99 };
 
 	QProgressBar* ProgressBar;

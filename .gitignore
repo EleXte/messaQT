@@ -29,3 +29,9 @@
 
 *.h
 *.cpp
+
+# And full catalogs
+/debug
+/Win32
+
+messenger.pro.user.*

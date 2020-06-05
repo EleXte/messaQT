@@ -22,6 +22,7 @@
 #include <qmessagebox.h>
 #include <cltransudp.h>
 #include <windowConfig.h>
+#include <mailsender.h>
 
 class QLabel;
 class QPushButton;
@@ -47,14 +48,16 @@ public:
 	void createDefaultCONF();			//Восстановление базового конфиг файла
 	QTimer* ptimer;
 	windowConfig *WindowCongif;
+    MailSender *MailSend;
 
 private slots:
     void on_SendButton_clicked();
     void slotConnected();
     void on_AddButton_clicked();
 	void AdrListClick();		
-	void FileDialog();						//Выбираем файл для передачи
-	void slot_NetworkConfig();
+    void FileDialog();					//Выбираем файл для передачи
+    void slot_NetworkConfig();
+    void st_MailWin();                  //Вызываем окно почты
 	
 private:
 	/*--Создаем меню--*/

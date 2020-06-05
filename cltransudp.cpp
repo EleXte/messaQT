@@ -51,7 +51,7 @@ void clTransUDP::nextSend()
 		ProgressBar->setValue(inDataSize);
 		if (inDataSize >= fileSize)
 		{
-			sendFileInf(TYPE_LASTPAK, getCRC32(transmitData).toLocal8Bit(), adress, port); //завершаем передачу
+			sendFileInf(TYPE_LASTPAK, getCRC32(transmitData).toLocal8Bit(), adress, port); //Р·Р°РІРµСЂС€Р°РµРј РїРµСЂРµРґР°С‡Сѓ
 			qDebug() << QString::fromUtf8("Last paket send");
 			return;
 		}
