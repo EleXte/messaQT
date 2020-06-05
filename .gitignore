@@ -31,7 +31,8 @@
 *.cpp
 
 # And full catalogs
-/debug
-/Win32
+debug/
+Win32/
 
-messenger.pro.user.*
+/messenger.pro.user.*
+/messenger.sdf
