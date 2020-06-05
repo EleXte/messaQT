@@ -33,6 +33,15 @@
 # And full catalogs
 debug/
 Win32/
+config/
+data/
 
+#Build files
 /messenger.pro.user.*
 /messenger.sdf
+Makefile
+Makefile.Debug
+Makefile.Release
+object_script.messenger.Debug
+object_script.messenger.Release
+.qmake.stash
